@@ -10,18 +10,19 @@ import (
 )
 
 
-type servers struct{
+type server struct{
 
 }
 
-func (*servers) Chatback(ctx context.Context, req *chatprotos.ChatterThere) (*chatprotos.ChatterBack, error){
-
+func (*server) Chatter(ctx context.Context, req *chatprotos.ChatterThere) (*chatprotos.ChatterBack, error){
 	message := "Heard you say: " + req.Request 
 	
 	res := &chatprotos.ChatterBack{
-		Response : "Heard",
+		Response : message,
 	}
-	return nil, nil
+	fmt.Printf("Received response from client %v\n", res)
+
+	return res, nil
 }
 
 func main(){
@@ -31,7 +32,7 @@ func main(){
 
 	cc := grpc.NewServer()
 
-	chatprotos.RegisterChatterboxServer(cc, &servers)
+	chatprotos.RegisterChatterboxServer(cc, &server{})
 
 	err2 := cc.Serve(lis)
 	if err != nil{
