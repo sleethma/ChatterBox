@@ -102,24 +102,107 @@ func (m *ChatterThere) GetRequest() string {
 	return ""
 }
 
+type ChatterStreamBack struct {
+	Response             string   `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ChatterStreamBack) Reset()         { *m = ChatterStreamBack{} }
+func (m *ChatterStreamBack) String() string { return proto.CompactTextString(m) }
+func (*ChatterStreamBack) ProtoMessage()    {}
+func (*ChatterStreamBack) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38aa2a21b154019b, []int{2}
+}
+
+func (m *ChatterStreamBack) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ChatterStreamBack.Unmarshal(m, b)
+}
+func (m *ChatterStreamBack) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ChatterStreamBack.Marshal(b, m, deterministic)
+}
+func (m *ChatterStreamBack) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChatterStreamBack.Merge(m, src)
+}
+func (m *ChatterStreamBack) XXX_Size() int {
+	return xxx_messageInfo_ChatterStreamBack.Size(m)
+}
+func (m *ChatterStreamBack) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChatterStreamBack.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChatterStreamBack proto.InternalMessageInfo
+
+func (m *ChatterStreamBack) GetResponse() string {
+	if m != nil {
+		return m.Response
+	}
+	return ""
+}
+
+type ChatterStreamThere struct {
+	Request              string   `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ChatterStreamThere) Reset()         { *m = ChatterStreamThere{} }
+func (m *ChatterStreamThere) String() string { return proto.CompactTextString(m) }
+func (*ChatterStreamThere) ProtoMessage()    {}
+func (*ChatterStreamThere) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38aa2a21b154019b, []int{3}
+}
+
+func (m *ChatterStreamThere) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ChatterStreamThere.Unmarshal(m, b)
+}
+func (m *ChatterStreamThere) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ChatterStreamThere.Marshal(b, m, deterministic)
+}
+func (m *ChatterStreamThere) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChatterStreamThere.Merge(m, src)
+}
+func (m *ChatterStreamThere) XXX_Size() int {
+	return xxx_messageInfo_ChatterStreamThere.Size(m)
+}
+func (m *ChatterStreamThere) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChatterStreamThere.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChatterStreamThere proto.InternalMessageInfo
+
+func (m *ChatterStreamThere) GetRequest() string {
+	if m != nil {
+		return m.Request
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*ChatterBack)(nil), "chatter.ChatterBack")
 	proto.RegisterType((*ChatterThere)(nil), "chatter.ChatterThere")
+	proto.RegisterType((*ChatterStreamBack)(nil), "chatter.ChatterStreamBack")
+	proto.RegisterType((*ChatterStreamThere)(nil), "chatter.ChatterStreamThere")
 }
 
 func init() { proto.RegisterFile("chatter-protos/chatter.proto", fileDescriptor_38aa2a21b154019b) }
 
 var fileDescriptor_38aa2a21b154019b = []byte{
-	// 142 bytes of a gzipped FileDescriptorProto
+	// 184 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x49, 0xce, 0x48, 0x2c,
 	0x29, 0x49, 0x2d, 0xd2, 0x2d, 0x28, 0xca, 0x2f, 0xc9, 0x2f, 0xd6, 0x87, 0x72, 0xf5, 0xc0, 0x5c,
 	0x21, 0x76, 0x28, 0x57, 0x49, 0x93, 0x8b, 0xdb, 0x19, 0xc2, 0x74, 0x4a, 0x4c, 0xce, 0x16, 0x92,
 	0xe2, 0xe2, 0x28, 0x4a, 0x2d, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0x95, 0x60, 0x54, 0x60, 0xd4, 0xe0,
 	0x0c, 0x82, 0xf3, 0x95, 0x34, 0xb8, 0x78, 0xa0, 0x4a, 0x43, 0x32, 0x52, 0x8b, 0x52, 0x85, 0x24,
-	0xb8, 0xd8, 0x8b, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0xa0, 0x4a, 0x61, 0x5c, 0x23, 0x37, 0x2e,
-	0x2e, 0xa8, 0xca, 0xa4, 0xfc, 0x0a, 0x21, 0x0b, 0x2e, 0x76, 0x28, 0x4f, 0x48, 0x54, 0x0f, 0xe6,
-	0x0c, 0x64, 0x93, 0xa4, 0x44, 0xd0, 0x85, 0x41, 0x6e, 0x51, 0x62, 0x48, 0x62, 0x03, 0x3b, 0xd6,
-	0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x12, 0xd2, 0xed, 0x98, 0xcc, 0x00, 0x00, 0x00,
+	0xb8, 0xd8, 0x8b, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0xa0, 0x4a, 0x61, 0x5c, 0x25, 0x7d, 0x2e,
+	0x41, 0xa8, 0xca, 0xe0, 0x92, 0xa2, 0xd4, 0xc4, 0x5c, 0x82, 0x46, 0xeb, 0x71, 0x09, 0xa1, 0x68,
+	0x20, 0x60, 0x81, 0x51, 0x1f, 0x23, 0x17, 0x17, 0x54, 0x43, 0x52, 0x7e, 0x85, 0x90, 0x05, 0x17,
+	0x3b, 0x94, 0x27, 0x24, 0xaa, 0x07, 0xf3, 0x28, 0xb2, 0x5b, 0xa5, 0x44, 0xd0, 0x85, 0x41, 0x4e,
+	0x52, 0x62, 0x10, 0x72, 0xe3, 0x12, 0x86, 0x0a, 0x38, 0xe7, 0x64, 0xa6, 0xe6, 0x95, 0x40, 0xac,
+	0x27, 0xd1, 0x14, 0x0d, 0xc6, 0x24, 0x36, 0x70, 0xb0, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff,
+	0x72, 0x0a, 0x26, 0x2e, 0x76, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -135,6 +218,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatterboxClient interface {
 	Chatter(ctx context.Context, in *ChatterThere, opts ...grpc.CallOption) (*ChatterBack, error)
+	ChatterClientStream(ctx context.Context, opts ...grpc.CallOption) (Chatterbox_ChatterClientStreamClient, error)
 }
 
 type chatterboxClient struct {
@@ -154,9 +238,44 @@ func (c *chatterboxClient) Chatter(ctx context.Context, in *ChatterThere, opts .
 	return out, nil
 }
 
+func (c *chatterboxClient) ChatterClientStream(ctx context.Context, opts ...grpc.CallOption) (Chatterbox_ChatterClientStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Chatterbox_serviceDesc.Streams[0], "/chatter.Chatterbox/ChatterClientStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &chatterboxChatterClientStreamClient{stream}
+	return x, nil
+}
+
+type Chatterbox_ChatterClientStreamClient interface {
+	Send(*ChatterThere) error
+	CloseAndRecv() (*ChatterBack, error)
+	grpc.ClientStream
+}
+
+type chatterboxChatterClientStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *chatterboxChatterClientStreamClient) Send(m *ChatterThere) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *chatterboxChatterClientStreamClient) CloseAndRecv() (*ChatterBack, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(ChatterBack)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ChatterboxServer is the server API for Chatterbox service.
 type ChatterboxServer interface {
 	Chatter(context.Context, *ChatterThere) (*ChatterBack, error)
+	ChatterClientStream(Chatterbox_ChatterClientStreamServer) error
 }
 
 // UnimplementedChatterboxServer can be embedded to have forward compatible implementations.
@@ -165,6 +284,9 @@ type UnimplementedChatterboxServer struct {
 
 func (*UnimplementedChatterboxServer) Chatter(ctx context.Context, req *ChatterThere) (*ChatterBack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Chatter not implemented")
+}
+func (*UnimplementedChatterboxServer) ChatterClientStream(srv Chatterbox_ChatterClientStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ChatterClientStream not implemented")
 }
 
 func RegisterChatterboxServer(s *grpc.Server, srv ChatterboxServer) {
@@ -189,6 +311,32 @@ func _Chatterbox_Chatter_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Chatterbox_ChatterClientStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ChatterboxServer).ChatterClientStream(&chatterboxChatterClientStreamServer{stream})
+}
+
+type Chatterbox_ChatterClientStreamServer interface {
+	SendAndClose(*ChatterBack) error
+	Recv() (*ChatterThere, error)
+	grpc.ServerStream
+}
+
+type chatterboxChatterClientStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *chatterboxChatterClientStreamServer) SendAndClose(m *ChatterBack) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *chatterboxChatterClientStreamServer) Recv() (*ChatterThere, error) {
+	m := new(ChatterThere)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _Chatterbox_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chatter.Chatterbox",
 	HandlerType: (*ChatterboxServer)(nil),
@@ -198,6 +346,12 @@ var _Chatterbox_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Chatterbox_Chatter_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ChatterClientStream",
+			Handler:       _Chatterbox_ChatterClientStream_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "chatter-protos/chatter.proto",
 }
