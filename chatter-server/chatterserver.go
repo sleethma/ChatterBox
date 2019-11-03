@@ -14,6 +14,8 @@ import (
 type server struct {
 }
 
+
+
 func (*server) ChatterClientStream(stream chatprotos.Chatterbox_ChatterClientStreamServer) error {
 	message := ""
 	for {
@@ -23,7 +25,9 @@ func (*server) ChatterClientStream(stream chatprotos.Chatterbox_ChatterClientStr
 				Response: message,
 			}
 			fmt.Printf("Received Message: %s\n", finalMess.Response)
-			stream.SendAndClose(finalMess)
+			for i:=0;i < 10; i++{
+			stream.Send(finalMess)
+			}
 			break
 		}
 		if err != nil {

@@ -1,12 +1,12 @@
 package main
 
 import (
+	"io"
+	"strconv"
 	chatprotos "chatterbox/chatter-protos"
 	"context"
 	"fmt"
 	"log"
-	"time"
-
 	"google.golang.org/grpc"
 )
 
@@ -21,23 +21,45 @@ func main() {
 
 	c := chatprotos.NewChatterboxClient(cc)
 
-	streamMessage(c)
-	
-	// fmt.Printf("Client received: %v \n", res.Response)
+	biDiStreaming(c)
 }
 
-func streamMessage(c chatprotos.ChatterboxClient){
-	req := "Hello Server, Im the client"
+func biDiStreaming(c chatprotos.ChatterboxClient) {
+
 	stream, err := c.ChatterClientStream(context.Background())
-	for i := 0; i < 10; i++ {
+	if err != nil {
+		fmt.Printf("Error establishing stream %v\n", err)
+		return
+	}
+
+	waitCh := make(chan struct{})
+	
+	go func() {
+		for i:=0;i<10;i++{
+		message := "Hello Server, I am " + strconv.Itoa(i) + " client"
 		stream.Send(&chatprotos.ChatterThere{
-			Request: req,
+			Request: message,
 		})
-		time.Sleep(1 * time.Second)
 	}
-	resp, err2 := stream.CloseAndRecv()
-	if err2 != nil {
-		log.Printf("Failed to close and send from client: %v \n", err)
+	stream.CloseSend()
+	}()
+
+	go func() {
+		for{
+		resp, err := stream.Recv()
+		if err == io.EOF{
+			close(waitCh)
+			return
+		}
+		if err != nil {
+			fmt.Printf("Error establishing stream %v\n", err)
+			return
+		}
+		fmt.Printf("I have recieved this response: %v", resp.Response)
 	}
-	fmt.Printf("Received:\n%v ", resp.Response)
+	}()
+
+	<-waitCh
 }
+
+

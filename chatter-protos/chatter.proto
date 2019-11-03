@@ -3,7 +3,7 @@ package chatter;
 
 service Chatterbox{
      rpc Chatter ( ChatterThere) returns (ChatterBack){};
-     rpc ChatterClientStream (stream ChatterThere) returns (ChatterBack){};
+     rpc ChatterClientStream (stream ChatterThere) returns (stream ChatterBack){};
 
 }
 
