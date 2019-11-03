@@ -2,7 +2,6 @@ syntax = "proto3";
 package chatter;
 
 service Chatterbox{
-     rpc Chatter ( ChatterThere) returns (ChatterBack){};
      rpc ChatterClientStream (stream ChatterThere) returns (stream ChatterBack){};
 
 }

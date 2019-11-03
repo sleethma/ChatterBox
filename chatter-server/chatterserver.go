@@ -1,8 +1,8 @@
 package main
 
 import (
+	"strconv"
 	chatprotos "chatterbox/chatter-protos"
-	"context"
 	"fmt"
 	"io"
 	"log"
@@ -14,40 +14,33 @@ import (
 type server struct {
 }
 
-
-
 func (*server) ChatterClientStream(stream chatprotos.Chatterbox_ChatterClientStreamServer) error {
 	message := ""
 	for {
 		mess, err := stream.Recv()
 		if err == io.EOF {
-			finalMess := &chatprotos.ChatterBack{
-				Response: message,
-			}
-			fmt.Printf("Received Message: %s\n", finalMess.Response)
-			for i:=0;i < 10; i++{
-			stream.Send(finalMess)
-			}
-			break
+			return nil
 		}
 		if err != nil {
 			log.Fatalf("Error sending client stream %v \n", err)
 			return err
 		}
-		message += "New message: " + mess.Request + "\n"
+
+		fmt.Printf("Received Message: \n%s\n", mess.Request)
+
+		for i := 0; i < 10; i++ {
+			message = "message from server: sending the " + strconv.Itoa(i) + " time\n"
+
+			finalMess := &chatprotos.ChatterBack{
+				Response: message,
+			}
+			stream.Send(finalMess)
+
+			if err != nil {
+				return err
+			}
+		}
 	}
-	return nil
-}
-
-func (*server) Chatter(ctx context.Context, req *chatprotos.ChatterThere) (*chatprotos.ChatterBack, error) {
-	message := "Heard you say: " + req.Request
-
-	res := &chatprotos.ChatterBack{
-		Response: message,
-	}
-	fmt.Printf("Received response from client %v\n", res)
-
-	return res, nil
 }
 
 func main() {
